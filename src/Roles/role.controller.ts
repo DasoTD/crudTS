@@ -59,9 +59,20 @@ const getRole = async(req:Request, res:Response) =>{
     }
 }
 
+const deleteRole =async (req:Request, res: Response) => {
+    try {
+        const {id} = req.params;
+        let role = await Role.findByIdAndDelete(id);
+        return res.status(200).json({data: role})
+    } catch (error: unknown) {
+        return res.json(error);
+    }
+}
+
 export  {
     createRole,
     updateRole,
     getAllRoles,
-    getRole
+    getRole,
+    deleteRole
 }
