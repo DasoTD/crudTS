@@ -2,6 +2,7 @@ import express from 'express'
 import mongoose from 'mongoose'
 
 import {route} from '../src/Roles/index'
+import {userRoute} from '../src/User/index'
 
 mongoose.connect("mongodb://localhost/crudts")
     .then(() => {
@@ -16,6 +17,7 @@ const app = express()
 
 app.use(express.json());
 app.use('/', route)
+app.use('/', userRoute)
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
     console.log(`server running on PORT: ${PORT}`)
