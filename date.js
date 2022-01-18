@@ -1,4 +1,5 @@
 var now = new Date();
+console.log(now);
  var utc = new Date(now.getTime() + now.getTimezoneOffset() * 60000);
 
  console.log(utc);
