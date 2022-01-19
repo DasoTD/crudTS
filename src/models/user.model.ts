@@ -22,6 +22,10 @@ const usersSchema = new Schema(
       type: Schema.Types.String,
       required: true,
     },
+    username: {
+      type: Schema.Types.String,
+      required: true,
+    },
     email: {
       type: Schema.Types.String,
       required: true,
@@ -41,6 +45,8 @@ const usersSchema = new Schema(
       required: true,
       index: true,
     },
+    accessToken: { type: String, },
+    refreshToken: { type: String, },
   },
   {
     collection: 'users',
