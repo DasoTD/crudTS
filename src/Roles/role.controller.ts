@@ -44,6 +44,7 @@ const updateRole = async(req: Request, res:Response) => {
 }
 const getAllRoles = async(req:Request, res:Response) => {
     try {
+        //get all roles
         let roles = await Role.find({});
         return res.status(200).json({data: roles});
     } catch (error: unknown) {
@@ -53,7 +54,7 @@ const getAllRoles = async(req:Request, res:Response) => {
 
 const getRole = async(req:Request, res:Response) =>{
     try {
-        const {id} = req.params;
+        const {id} = req.params; //ID to search role by 
         let role = await Role.findById(id);
         return res.status(200).json({data: role});
     } catch (error: unknown) {
@@ -63,7 +64,7 @@ const getRole = async(req:Request, res:Response) =>{
 
 const deleteRole =async (req:Request, res: Response) => {
     try {
-        const {id} = req.params;
+        const {id} = req.params; // get roleID
         let role = await Role.findByIdAndDelete(id);
         return res.status(200).json({data: role})
     } catch (error: unknown) {

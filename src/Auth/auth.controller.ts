@@ -4,7 +4,7 @@ import { authenticate } from '../../Middleware/Authenticate';
 import { User, UserInput } from '../models/user.model';
 const login = async(req: Request, res: Response) => {
     try {
-        const SALT: number = 10;
+        const SALT: number = 10; // hard coded this for sample purpose, please store it the .env file
         const {usernameoremail, password} = req.body
         if(!usernameoremail || ! password){
             return res.status(422).json({ message: 'The fields username and password are required' });
@@ -31,22 +31,24 @@ const login = async(req: Request, res: Response) => {
         await user.save()
 
     } catch (error: unknown) {
-        
+        return res.json(error)
     }
 }
 
 const createUser =async (req:Request, res: Response) => {
     try {
-        const { fullName, email, password, role, enabled} = req.body;
+        const { fullName, email, password, role, enabled} = req.body; // the request body
 
         if (!email || !fullName || !password || !role) {
             return res.status(422).json({ message: 'The fields email, fullName, password and role are required' });
         }
         const SALT = 10; //hard codimng though
+        //hash the entered password
           const encryptedPassword = await bcrypt.hash(
             password.toString(),
             Number(SALT)
           );
+          //validate entered input
           const userInput: UserInput = {
             fullName,
             email,
