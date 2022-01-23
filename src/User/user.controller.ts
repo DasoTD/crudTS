@@ -5,7 +5,7 @@ import { User, UserInput } from '../models/user.model';
 
 const updateUser = async (req: Request, res: Response) => {
     try {
-        const { id } = req.params;
+        const { id } = req.params; //get userId
     const { enabled, fullName, role } = req.body;
   
     const user = await User.findById(id);
@@ -30,7 +30,7 @@ const updateUser = async (req: Request, res: Response) => {
   
   const deleteUser = async (req: Request, res: Response) => {
     try {
-        const { id } = req.params;
+        const { id } = req.params;//get userId
   
     await User.findByIdAndDelete(id);
   

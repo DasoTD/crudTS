@@ -4,7 +4,7 @@ import {Role, RoleInput} from '../models/role.model'
 
 const createRole = async(req: Request, res: Response) => {
     try {
-        const {name, description} = req.body;
+        const {name, description} = req.body; //destructuring payload
 
     if (!name || !description) {
         return res.status(422).json({
@@ -27,9 +27,11 @@ const createRole = async(req: Request, res: Response) => {
 
 const updateRole = async(req: Request, res:Response) => {
     try {
-        const { id} = req.params;
+        const { id} = req.params; //get roleID
         const { name, description} = req.body;
         let role = await Role.findById(id);
+
+        //check if role is not found to return error
         if(!role){
             return res.status(404).json("role with this id not found")
         }   
